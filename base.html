@@ -1,0 +1,144 @@
+{# это шаблон сайта #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Hermaeus Mora {% endblock %} </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap'); /* Подключаем Roboto Mono */
+
+        body {
+            background-color: #000000;
+            color: #98ff98;
+            font-family: 'Roboto Mono', monospace; /* Используем Roboto Mono */
+            margin: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #222;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: #98ff98;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+
+        .center-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .center-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .category-buttons {  /* Стиль для контейнера кнопок */
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .category-buttons a { /* Стиль для каждой кнопки */
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 0 5px;
+            background-color: #333;
+            color: #98ff98;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .category-buttons a:hover {
+            background-color: #444;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .about-us {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+
+        .about-us p { /* Стилизуем параграф внутри about-us */
+            color: #666; /* Серый цвет */
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            color: #666; /* Серый цвет */
+            font-size: 0.8em; /* Немного меньше шрифт */
+        }
+    </style>
+</head>
+<body>
+
+    {% block nav %}
+    <ul>
+        <li><a href= "/">Главная страница</a></li>
+        <li><a href= "/catalog">Каталог</a></li>
+        <li><a href= "/T-shorts">Футболки</a></li>
+        <li><a href= "/hoodie">Худи</a></li>
+        <li><a href= "/accessories">Аксессуары</a></li>
+    </ul>
+    {% endblock %}
+
+    {% if request.path == "/" %}
+        <div class="center-image">
+            <img src="https://i.ibb.co/HjrF70J/photo-2025-09-23-09-50-46-2.jpg" alt="Hermaeus Mora" width="450" height="350">
+        </div>
+    {% endif %}
+
+    {% if request.path == "/" %} {# Отображаем кнопки категорий только на главной #}
+        <div class="category-buttons">
+            <a href="/T-shorts">Футболки</a>
+            <a href="/hoodie">Худи</a>
+            <a href="/accessories">Аксессуары</a>
+        </div>
+
+        <div class="about-us">
+            <h2>О нас</h2>
+            <p>Мы – Hermaeus Mora, эко-бренд для тех, кто ценит индивидуальность и заботится о планете.  Наша одежда и аксессуары созданы для неформалов, которые не боятся выражать себя и выбирают осознанное потребление. Мы используем переработанные материалы и экологически чистые технологии, чтобы минимизировать наш вклад в загрязнение окружающей среды.  Присоединяйтесь к нам в создании более устойчивого будущего!</p>
+        </div>
+    {% endif %}
+
+    <div class="content">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    <footer class="footer">
+        Контакты: example@hermaeusmora.com | +7 (999) 123-45-67
+    </footer>
+
+</body>
+</html>
+
+
